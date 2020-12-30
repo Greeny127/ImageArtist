@@ -1,15 +1,17 @@
 import time
 import cv2
 import pyautogui
+from PIL import Image, ImageOps
 from colormap import rgb2hex
 
 class Paint:
 
     def __init__(self):
-        self.image = cv2.imread('image.jpg')
+        self.imName = 'image.jpg'
+        self.image = cv2.imread(self.imName)
         self.size = self.image.shape
-        self.x = 0
-        self.y = 0
+        self.x = 533
+        self.y = 400
         self.startcord = [self.x, self.y] #Change this for starting coord
 
     def setColor(self, hex):
@@ -57,12 +59,15 @@ class Paint:
                     if pixel[1] == nums[1]:
                         done.append(nums)
                         pyautogui.click(x=nums[0][0], y=nums[0][1])
-                        print(nums[0])
 
+try:
 
-brush = Paint() #Creating a Paint() object
-time.sleep(5) #5 seconds to switch to the Paint.net window
-print("Started")
-brush.draw()
+    brush = Paint() #Creating a Paint() object
+    time.sleep(5) #5 seconds to switch to the Paint.net window
+    print("Started")
+    brush.draw()
 
-print("Done")
+    print("\nDone")
+
+except pyautogui.FailSafeException:
+    print("\nForcefully stopped drawing")
