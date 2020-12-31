@@ -1,7 +1,6 @@
 import time
 import cv2
 import pyautogui
-from PIL import Image, ImageOps
 from colormap import rgb2hex
 
 class Paint:
@@ -10,8 +9,8 @@ class Paint:
         self.imName = 'image.jpg'
         self.image = cv2.imread(self.imName)
         self.size = self.image.shape
-        self.x = 533
-        self.y = 400
+        self.x = 414
+        self.y = 124
         self.startcord = [self.x, self.y] #Change this for starting coord
 
     def setColor(self, hex):
@@ -19,8 +18,8 @@ class Paint:
         pyautogui.write(hex)
 
     def getPixels(self):
-        rows = self.size[0]
-        cols = self.size[1]
+        rows = self.size[0] #getting max pixel amount
+        cols = self.size[1] # --^
         pixels = []
 
         for i in range(rows):
@@ -36,10 +35,10 @@ class Paint:
 
                     pixels.append(pixeldata)
 
-                self.startcord[1] += 1 #Adds 1 to 'startcord' y value, since the pixel is over
+                self.startcord[0] += 1 #Adds 1 to 'startcord' x value, since the pixel is over
             
-            self.startcord[1] = self.y #Resets the Y value to 'startcord' y value
-            self.startcord[0] += 1 #Adds 1 to 'startcord' x value
+            self.startcord[0] = self.x #Resets the X value to 'startcord' x value
+            self.startcord[1] += 1 #Adds 1 to 'startcord' y value
 
         return pixels
         
