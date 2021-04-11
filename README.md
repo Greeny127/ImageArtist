@@ -13,4 +13,3 @@ Once all requirements are met, you have to customise the program to suit your co
 
 It is reccomended to resize the orignal image to a smaller size if it is too big, in case the coordintes go out of bounds.
 
-**This is not complete.**
